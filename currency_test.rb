@@ -158,4 +158,8 @@ class CurrencyTest < Minitest::Test
     assert_equal 162.2, converter.convert(Currency.new(1,"EUR"),"JPY").amount.round(1)
   end
 
+  def test_initialize_currencytrader
+    assert CurrencyTrader.new( exchangeRatesOverTime, startingCurrency)
+  end
+
 end

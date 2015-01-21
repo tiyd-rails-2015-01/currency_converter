@@ -17,7 +17,7 @@ class Currency
       @code = code
     elsif amount.class == String
       ##parse string
-      @amount = amount[1..-1]
+      @amount = amount[1..-1].to_f
       @code = symbol_to_code( amount[0] )
     else
       raise StandardError, "Cannot parse inputs."
