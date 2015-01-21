@@ -143,4 +143,9 @@ class CurrencyTest < Minitest::Test
     assert_equal currency_converter.convert(Currency.new(1, "USD"), "GBP"), Currency.new(0.66039, "GBP")
   end
 
+  def test_initialize_currency_converter_with_hash
+    hash = {USD: 1.0, EUR: 0.74, JPY: 120.0}
+    assert CurrencyConverter.new(hash)
+  end
+
 end
