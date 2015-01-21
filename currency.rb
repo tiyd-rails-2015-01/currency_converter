@@ -1,3 +1,5 @@
+require "pry"
+
 class DifferentCurrencyCodeError < StandardError
 end
 
@@ -5,13 +7,36 @@ class Currency
 
   attr_reader :amount, :code
 
-  def initialize( amount, code )
+  def initialize( amount, code = nil )
     #using currency codes as listed here: http://en.wikipedia.org/wiki/ISO_4217
     # quick reference:  EUR = euro
     # =>                GBP = pounds sterling
     # =>                USD = US dollars
-    @amount = amount
-    @code = code
+    if amount.class == Float || amount.class == Fixnum
+      @amount = amount
+      @code = code
+    elsif amount.class == String
+      ##parse string
+      @amount = amount[1..-1]
+      @code = symbol_to_code( amount[0] )
+    else
+      raise StandardError, "Cannot parse inputs."
+    end
+  end
+
+  def symbol_to_code( symbol )
+    code_lookup = { "$" => "USD",
+                    "€" => "EUR",
+                    "¥" => "JPY",
+                    "£" => "GBP",
+                    "₹" => "INR",
+                    "R" => "ZAR"}
+    if code_lookup.has_key?(symbol)
+      return code_lookup[symbol]
+    else
+      raise StandardError, "Unknown currency symbol"
+      return nil
+    end
   end
 
   # def convert( toCode )

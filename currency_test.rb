@@ -49,8 +49,10 @@ class CurrencyTest < Minitest::Test
   end
 
   def test_currency_initialize_with_one_parameter
-    assert Currency.new("$1.20")    
+    assert Currency.new("$1.20")
     assert Currency.new("€ 7.00")
+
+    assert_equal "USD", Currency.new("$1.20").code
   end
 
   def test_currency_objects_are_equal
