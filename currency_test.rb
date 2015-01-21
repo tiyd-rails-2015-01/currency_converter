@@ -145,7 +145,13 @@ class CurrencyTest < Minitest::Test
 
   def test_initialize_currency_converter_with_hash
     hash = {USD: 1.0, EUR: 0.74, JPY: 120.0}
-    assert CurrencyConverter.new(hash)
+    assert converter = CurrencyConverter.new(hash)
+    # dollar is
+    # worth 0.74 euros and that a dollar is worth 120 yen, but also that a euro is worth 120/0.74 =
+    # 162.2 yen.
+    assert_equal 0.74, converter.convert(Currency.new(1,"USD"),"EUR").amount.round(2)
+    assert_equal 162.2, converter.convert(Currency.new(1,"EUR"),"JPY").amount.round(1)
+
   end
 
 end
