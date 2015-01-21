@@ -133,4 +133,9 @@ class CurrencyTest < Minitest::Test
     assert_equal Hash, converter.conversion_rates.class
   end
 
+  def test_convert_to_same_currency_code
+    currency_converter = CurrencyConverter.new
+    assert_equal currency_converter.convert(Currency.new(1, "USD"), "USD"), Currency.new(1, "USD")
+  end
+
 end

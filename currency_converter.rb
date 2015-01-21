@@ -1,3 +1,5 @@
+require "pry"
+
 class UnsupportedCurrencyCodeError < StandardError
 end
 
@@ -20,8 +22,10 @@ class CurrencyConverter
 
   def convert( currencyObject, toCode )
 
-      if @conversion_rates.has_key?(currencyObject.code.to_sym) && @conversion_rates.has_key?(toCode.downcase.to_sym)
-        amount = (@amount/@conversion_rates[currencyObject.code.to_sym] )*@conversion_rates[toCode.downcase.to_sym]
+    # binding.pry
+
+      if @conversion_rates.has_key?(currencyObject.code.to_sym) && @conversion_rates.has_key?(toCode.upcase.to_sym)
+        amount = (currencyObject.amount/@conversion_rates[currencyObject.code.to_sym] )*@conversion_rates[toCode.upcase.to_sym]
         code = toCode
 
         return Currency.new( amount, code )
