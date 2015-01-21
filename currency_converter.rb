@@ -1,6 +1,6 @@
 require "pry"
 
-class UnsupportedCurrencyCodeError < StandardError
+class UnknownCurrencyCodeError < StandardError
 end
 
 class CurrencyConverter
@@ -29,7 +29,7 @@ class CurrencyConverter
 
         return Currency.new( amount, code )
       else
-        raise UnsupportedCurrencyCodeError, "Unsupported currency code"
+        raise UnknownCurrencyCodeError, "Unsupported currency code"
       end
 
     end
