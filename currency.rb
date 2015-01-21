@@ -47,10 +47,10 @@ class Currency
       return self.class.new(@amount + otherCurrencyObject.amount, @code)
     else
       #error!
-      raise DifferentCurrencyCodeError, "Can only subtract currencies with the same currency code"
-      return nil
-      # otherCurrencyObject.convert(@code)
-      # return self.class.new(@amount + otherCurrencyObject.amount, @code)
+      # raise DifferentCurrencyCodeError, "Can only subtract currencies with the same currency code"
+      # return nil
+      converter = CurrencyConverter.new
+      return self.class.new(@amount + converter.convert( otherCurrencyObject, @code).amount, @code)
     end
   end
 
@@ -59,10 +59,10 @@ class Currency
       return self.class.new(@amount - otherCurrencyObject.amount, @code)
     else
       #error!
-      raise DifferentCurrencyCodeError, "Can only subtract currencies with the same currency code"
-      return nil
-      # otherCurrencyObject.convert(@code)
-      # return self.class.new(@amount - otherCurrencyObject.amount, @code)
+      # raise DifferentCurrencyCodeError, "Can only subtract currencies with the same currency code"
+      # return nil
+      converter = CurrencyConverter.new
+      return self.class.new(@amount - converter.convert( otherCurrencyObject, @code).amount, @code)
     end
   end
 
