@@ -2,6 +2,8 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './currency.rb'
 require './currency_converter.rb'
+require './currency_trader.rb'
+
 # Day 1 Requirements:
 
 # Currency:
@@ -159,6 +161,12 @@ class CurrencyTest < Minitest::Test
   end
 
   def test_initialize_currencytrader
+    hash1 = {USD: 1.0, EUR: 0.74, JPY: 120.0}
+    hash2 = {USD: 1.2, EUR: 1, JPY: 110.0}
+
+    exchangeRatesOverTime = [CurrencyConverter.new(hash1), CurrencyConverter.new(hash2)]
+    
+    startingCurrency = Currency.new( 1.00, "USD")
     assert CurrencyTrader.new( exchangeRatesOverTime, startingCurrency)
   end
 
