@@ -96,16 +96,26 @@ class CurrencyTest < Minitest::Test
     dollars = Currency.new(1.25, :USD)
 
     euros = currency_converter.convert(dollars, :EUR)
+    assert_equal Currency.new(0.925, :EUR), euros
   #  puts euros.amount
 
     yen = currency_converter.convert(euros, :JPY)
+    assert_equal Currency.new(150.0, :JPY), yen
   #  puts yen.amount
-
   end
 #take 1.25 and convert to euros, then convert euros to yen
 #number_of_euro = currency.amount * rates[:EUR] / rates[currency.code]
 
+  def test_raise_unknown_currency_code_error
+    dollars = Currency.new(1.25, :USD)
+
+    assert_raises(UnknownCurrencyCodeError) { currency_converter.convert(dollars, :ISK) }
+
+
+  end
 end
+
+# assert_raises(DifferentCurrencyCodeError) { currency_1 + currency_2 }
 
 
 # def +(other)
