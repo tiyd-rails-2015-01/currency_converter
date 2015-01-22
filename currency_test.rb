@@ -115,8 +115,9 @@ class CurrencyTest < Minitest::Test
 
     krona = Currency.new(1.25, :ISK)
     assert_raises(UnknownCurrencyCodeError) { currency_converter.convert(krona, :USD) }
-
   end
+
+
 end
 
 # assert_raises(DifferentCurrencyCodeError) { currency_1 + currency_2 }
