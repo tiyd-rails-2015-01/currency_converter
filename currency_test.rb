@@ -87,7 +87,23 @@ class CurrencyTest < Minitest::Test
 
   def test_created_with_a_hash
     currency_converter = CurrencyConverter.new({USD: 1.0, EUR: 0.74, JPY: 120.0})
+    refute_equal currency_converter, nil
   end
+
+  def test_convert_multiple_different_currencies
+    currency_converter = CurrencyConverter.new({USD: 1.0, EUR: 0.74, JPY: 120.0})
+
+    dollars = Currency.new(1.25, :USD)
+
+    euros = currency_converter.convert(dollars, :EUR)
+  #  puts euros.amount
+
+    yen = currency_converter.convert(euros, :JPY)
+  #  puts yen.amount
+
+  end
+#take 1.25 and convert to euros, then convert euros to yen
+#number_of_euro = currency.amount * rates[:EUR] / rates[currency.code]
 
 end
 
