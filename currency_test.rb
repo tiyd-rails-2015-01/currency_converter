@@ -4,6 +4,7 @@ require 'minitest/pride'
 require './currency.rb'
 require './different_currency_code_error.rb'
 require './currency_converter.rb'
+require './unknown_currency_code_error.rb'
 
 class CurrencyTest < Minitest::Test
   def test_currency_exists
@@ -107,10 +108,13 @@ class CurrencyTest < Minitest::Test
 #number_of_euro = currency.amount * rates[:EUR] / rates[currency.code]
 
   def test_raise_unknown_currency_code_error
-    dollars = Currency.new(1.25, :USD)
+    currency_converter = CurrencyConverter.new({USD: 1.0, EUR: 0.74, JPY: 120.0})
 
+    dollars = Currency.new(1.25, :USD)
     assert_raises(UnknownCurrencyCodeError) { currency_converter.convert(dollars, :ISK) }
 
+    krona = Currency.new(1.25, :ISK)
+    assert_raises(UnknownCurrencyCodeError) { currency_converter.convert(krona, :USD) }
 
   end
 end
