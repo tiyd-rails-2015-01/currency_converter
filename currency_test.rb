@@ -44,7 +44,7 @@ class CurrencyTest <Minitest::Test
   def test_can_multiply_by_float_or_fixnum
     my_money = Currency.new(10, "USD")
     assert (my_money * 8) == Currency.new(80, "USD")
-    assert (my_money * 2.5) == Currency.new(25, "USD")
+    assert (my_money * 2.55) == Currency.new(25.5, "USD")
     refute (my_money * 7) == Currency.new(7000, "USD")
   end
 
@@ -64,7 +64,7 @@ class CurrencyTest <Minitest::Test
   def test_currency_converter_initializes_with_hash
     money_machine = CurrencyConverter.new(currency_rates)
     different_currencies = money_machine.currency_codes
-    assert_equal Hash, different_currencies.class
+    assert_equal currency_rates, different_currencies
   end
 
   def test_currency_converter_converts_same_currency_type
@@ -88,8 +88,14 @@ class CurrencyTest <Minitest::Test
     my_money = Currency.new(10, :EUR)
     changed_money = money_machine.convert(my_money, :GBP)
     different_money = money_machine.convert(my_money, :JPY)
-    assert_equal Currency.new(7.646554917577329, :GBP), changed_money
-    assert_equal Currency.new(1364.5350990924244, :JPY), different_money
+    assert_in_delta Currency.new(7.65, :GBP).amount, changed_money.amount, 0.01
+    assert_in_delta Currency.new(1364.54, :JPY).amount, different_money.amount, 0.01
+  end
+
+  def test_currency_converter_raises_error_with_unknown_currency
+    money_machine = CurrencyConverter.new(currency_rates)
+    my_money = Currency.new(10, :BRL)
+    assert_raises(UnknownCurrencyCodeError) {money_machine.convert(my_money, :USD)}
   end
   #for fun: currency rate table in own file
   # decimal place display

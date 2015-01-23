@@ -8,11 +8,11 @@ class Currency
     @code = code
   end
 
-  def == (other_money)
+  def ==(other_money)
     self.amount == other_money.amount && self.code == other_money.code
   end
 
-  def + (other_money)
+  def +(other_money)
     if self.code == other_money.code
       Currency.new(amount + other_money.amount, code)
     else
@@ -20,7 +20,7 @@ class Currency
     end
   end
 
-  def - (other_money)
+  def -(other_money)
     if self.code == other_money.code
       Currency.new(amount - other_money.amount, code)
     else
@@ -28,7 +28,7 @@ class Currency
     end
   end
 
-  def * (number)
+  def *(number)
     Currency.new(amount * number, code)
   end
 
