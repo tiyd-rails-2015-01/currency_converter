@@ -73,6 +73,8 @@ class CurrencyTest <Minitest::Test
     new_money = Currency.new(1, :USD)
     newest_money = money_machine.convert(new_money, :USD)
     assert_equal Currency.new(1, :USD), newest_money
+    refute Currency.new(2, :USD) == newest_money
+    refute Currency.new(1, :EUR) == newest_money
   end
 
   #for fun: currency rate table in own file
