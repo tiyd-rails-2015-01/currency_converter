@@ -52,7 +52,7 @@ class CurrencyTest <Minitest::Test
     assert CurrencyConverter
   end
 
-  def show_currency_rates
+  def currency_rates
     return {USD: 1.00000,
       EUR: 0.86384,
       GBP: 0.66054,
@@ -62,19 +62,25 @@ class CurrencyTest <Minitest::Test
   end
 
   def test_currency_converter_initializes_with_hash
-    @currency_rates = show_currency_rates
-    money_machine = CurrencyConverter.new(@currency_rates)
-    different_currencies = money_machine.currency_rates
+    money_machine = CurrencyConverter.new(currency_rates)
+    different_currencies = money_machine.currency_codes
     assert_equal Hash, different_currencies.class
   end
 
   def test_currency_converter_converts_same_currency_type
-    money_machine = CurrencyConverter.new(@currency_rates)
+    money_machine = CurrencyConverter.new(currency_rates)
     new_money = Currency.new(1, :USD)
     newest_money = money_machine.convert(new_money, :USD)
     assert_equal Currency.new(1, :USD), newest_money
     refute Currency.new(2, :USD) == newest_money
     refute Currency.new(1, :EUR) == newest_money
+  end
+
+  def test_currency_converter_converts_from_usd_to_another_type
+    money_machine = CurrencyConverter.new(currency_rates)
+    my_money = Currency.new(5, :USD)
+    changed_money = money_machine.convert(my_money, :EUR)
+    assert_equal Currency.new(4.3192, :EUR), changed_money
   end
 
   #for fun: currency rate table in own file
