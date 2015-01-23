@@ -5,7 +5,7 @@ class Currency
   attr_reader :amount, :code
   def initialize(amount, code)
     @amount = amount
-    @code = currency_code
+    @code = code
   end
 
   def == (other_money)
