@@ -30,7 +30,6 @@ class CurrencyTest <Minitest::Test
 
   def test_subtract_two_currency_objects
     my_money = Currency.new(20, "USD")
-    #what about situations where this would be a negative #? $ doesn't work that way
     your_money = Currency.new(5, "USD")
     assert my_money - your_money == Currency.new(15, "USD")
   end
@@ -75,4 +74,8 @@ class CurrencyTest <Minitest::Test
     newest_money = money_machine.convert(new_money, :USD)
     assert_equal Currency.new(1, :USD), newest_money
   end
+
+  #for fun: currency rate table in own file
+  # decimal place display
+  #what about situations where this would be a negative #? $ doesn't work that way
 end
