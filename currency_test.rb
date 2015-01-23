@@ -54,11 +54,11 @@ class CurrencyTest <Minitest::Test
 
   def currency_rates
     return {USD: 1.00000,
-      EUR: 0.86384,
-      GBP: 0.66054,
-      AUD: 1.23455,
-      CAD: 1.23290,
-      JPY: 117.874}
+      EUR: 0.88949,
+      GBP: 0.66591,
+      AUD: 1.26142,
+      CAD: 1.24298,
+      JPY: 117.774}
   end
 
   def test_currency_converter_initializes_with_hash
@@ -77,14 +77,14 @@ class CurrencyTest <Minitest::Test
   end
 
   def test_currency_converter_converts_from_usd_to_another_type
-    money_machine = CurrencyConverter.new(currency_rates)
+    money_machine = CurrencyConverter.new()
     my_money = Currency.new(5, :USD)
     changed_money = money_machine.convert(my_money, :EUR)
     assert_equal Currency.new(4.3192, :EUR), changed_money
   end
 
   def test_currency_converter_converts_different_currency_types
-    money_machine = CurrencyConverter.new(currency_rates)
+    money_machine = CurrencyConverter.new()
     my_money = Currency.new(10, :EUR)
     changed_money = money_machine.convert(my_money, :GBP)
     different_money = money_machine.convert(my_money, :JPY)
@@ -99,5 +99,5 @@ class CurrencyTest <Minitest::Test
   end
   #for fun: currency rate table in own file
   # decimal place display
-  #what about situations where this would be a negative #? $ doesn't work that way
+
 end

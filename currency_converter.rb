@@ -4,7 +4,7 @@ require './unknown_currency_code_error'
 
 class CurrencyConverter < Currency
   attr_reader :currency_codes
-  def initialize(currency_codes)
+  def initialize(currency_codes = default_rates)
     @currency_codes = currency_codes
   end
 
@@ -22,6 +22,15 @@ class CurrencyConverter < Currency
       changed_cash =  my_cash * currency_codes[desired_type] / currency_codes[current_money.code]
       Currency.new(changed_cash, desired_type)
     end
+  end
+
+  def default_rates
+    return {USD: 1.00000,
+      EUR: 0.86384,
+      GBP: 0.66054,
+      AUD: 1.23455,
+      CAD: 1.23290,
+      JPY: 117.874}
   end
 
 end
