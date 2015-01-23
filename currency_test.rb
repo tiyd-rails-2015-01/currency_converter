@@ -83,6 +83,14 @@ class CurrencyTest <Minitest::Test
     assert_equal Currency.new(4.3192, :EUR), changed_money
   end
 
+  def test_currency_converter_converts_different_currency_types
+    money_machine = CurrencyConverter.new(currency_rates)
+    my_money = Currency.new(10, :EUR)
+    changed_money = money_machine.convert(my_money, :GBP)
+    different_money = money_machine.convert(my_money, :JPY)
+    assert_equal Currency.new(7.646554917577329, :GBP), changed_money
+    assert_equal Currency.new(1364.5350990924244, :JPY), different_money
+  end
   #for fun: currency rate table in own file
   # decimal place display
   #what about situations where this would be a negative #? $ doesn't work that way
