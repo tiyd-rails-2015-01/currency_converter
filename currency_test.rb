@@ -97,7 +97,22 @@ class CurrencyTest <Minitest::Test
     my_money = Currency.new(10, :BRL)
     assert_raises(UnknownCurrencyCodeError) {money_machine.convert(my_money, :USD)}
   end
-  #for fun: currency rate table in own file
+
+  def test_currency_symbol_reader
+    money_machine = CurrencyConverter.new(currency_rates)
+    my_money = Currency.new("$10.00")
+    # their_money = Currency.new("£10.00")
+    changed_money = money_machine.convert(my_money, :GBP)
+    # different_money = money_machine.convert(their_money, :JPY)
+    assert_in_delta Currency.new(6.66, :GBP).amount, changed_money.amount, 0.01
+    # assert_in_delta Currency.new(1047.59, :JPY).amount, different_money.amount, 0.01
+  end
+
+  # def test_converter_can_read_symbols
+  # end
+
+
   # decimal place display
+  # return currency with symbol
 
 end
