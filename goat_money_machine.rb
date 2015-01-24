@@ -2,6 +2,7 @@ require './different_currency_code_error'
 require './unknown_currency_code_error'
 require './currency'
 require './currency_converter'
+require 'pry'
 
 def change_real_money(mm)
   array = mm.symbols.invert.keys
@@ -34,7 +35,7 @@ def change_real_money(mm)
     else
       puts "Please enter one of the available codes."
       right_input = false
-      code_input = gets.chomp
+      code_input = gets.chomp.to_sym
     end
   end
   puts mm.change_my_money(my_money, other_money)
