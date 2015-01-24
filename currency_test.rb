@@ -116,9 +116,4 @@ class CurrencyTest <Minitest::Test
     assert_raises(UnknownCurrencyCodeError) {money_machine.convert(my_money, :BRL)}
   end
 
-
-  
-  # decimal place/visible output
-  # return currency with symbol
-
 end

@@ -35,7 +35,8 @@ class CurrencyConverter < Currency
 
   def change_my_money(current_money, desired_type)
     my_cash = convert(current_money, desired_type)
-    puts my_cash.amount.round(2)
+    new_symbol = symbols[desired_type]
+    puts "You now have #{new_symbol}#{my_cash.amount.round(2)}."
   end
 
 end
