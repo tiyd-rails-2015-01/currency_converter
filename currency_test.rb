@@ -102,10 +102,13 @@ class CurrencyTest <Minitest::Test
     money_machine = CurrencyConverter.new(currency_rates)
     my_money = Currency.new("$10.00")
     their_money = Currency.new("£10.00")
+    your_money = Currency.new("A$37.64")
     changed_money = money_machine.convert(my_money, :GBP)
     different_money = money_machine.convert(their_money, :JPY)
+    other_money = money_machine.convert(your_money, :CAD)
     assert_in_delta Currency.new(6.66, :GBP).amount, changed_money.amount, 0.01
     assert_in_delta Currency.new(1768.62, :JPY).amount, different_money.amount, 0.01
+    assert_in_delta Currency.new(37.09, :CAD).amount, other_money.amount, 0.01
   end
 
   # def test_converter_can_read_symbols

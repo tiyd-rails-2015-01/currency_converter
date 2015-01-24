@@ -25,11 +25,12 @@ class Currency
     def read(string)
       sign = string[0]
       new_hash = symbols.invert
-      @code = new_hash[sign]
       if sign == "A" || sign == "C"
         @amount = string[2..-1].to_f
+        @code = new_hash[(string[0..1])]
       else
         @amount = string[1..-1].to_f
+        @code = new_hash[sign]
       end
     end
 
