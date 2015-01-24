@@ -11,7 +11,7 @@ class CurrencyConverter < Currency
   def valid_currency_code?(code)
     currency_codes.keys.include?(code)
   end
-  
+
   def convert(current_money, desired_type)
     if !valid_currency_code?(desired_type) || !valid_currency_code?(current_money.code)
       raise UnknownCurrencyCodeError, "Sorry, we do not have the rates for that currency type."
@@ -31,6 +31,11 @@ class CurrencyConverter < Currency
       AUD: 1.23455,
       CAD: 1.23290,
       JPY: 117.874}
+  end
+
+  def change_my_money(current_money, desired_type)
+    my_cash = convert(current_money, desired_type)
+    puts my_cash.amount.round(2)
   end
 
 end

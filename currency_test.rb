@@ -117,7 +117,7 @@ class CurrencyTest <Minitest::Test
   end
 
 
-  # more refutes
+  
   # decimal place/visible output
   # return currency with symbol
 
