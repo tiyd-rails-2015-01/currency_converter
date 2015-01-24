@@ -34,15 +34,6 @@ class Currency
       end
     end
 
-  # def read_currency_symbol(string)
-  #   if the string includes a recognized symbol
-  #     match that symbol with appropriate code from hash
-  #     return correct currency code
-  #   else the string has an odd symbol or no symbol
-  #     raise UnknownCurrencyCodeError
-  #   end
-  # end
-
   def ==(other_money)
     self.amount == other_money.amount && self.code == other_money.code
   end
@@ -66,13 +57,5 @@ class Currency
   def *(number)
     Currency.new(amount * number, code)
   end
-
-
-
-
-
-  #magical new keyword arguments exist...easier, but would change existing code, so pretending they don't exist for now
-  #start_with?  looping over hash (hash.each) and then, split on that thing and take the number out
-  #"$32"[1..-1].to_f gives 32.0
 
 end

@@ -103,19 +103,22 @@ class CurrencyTest <Minitest::Test
     my_money = Currency.new("$10.00")
     their_money = Currency.new("£10.00")
     your_money = Currency.new("A$37.64")
+    her_money = Currency.new("&34.23")
     changed_money = money_machine.convert(my_money, :GBP)
     different_money = money_machine.convert(their_money, :JPY)
     other_money = money_machine.convert(your_money, :CAD)
     assert_in_delta Currency.new(6.66, :GBP).amount, changed_money.amount, 0.01
     assert_in_delta Currency.new(1768.62, :JPY).amount, different_money.amount, 0.01
     assert_in_delta Currency.new(37.09, :CAD).amount, other_money.amount, 0.01
+    refute Currency.new(6.66, :USD).amount == changed_money.amount
+    refute Currency.new(15.02, :USD).amount == different_money.amount
+    assert_raises(UnknownCurrencyCodeError) {money_machine.convert(her_money, :USD)}
+    assert_raises(UnknownCurrencyCodeError) {money_machine.convert(my_money, :BRL)}
   end
 
-  # def test_converter_can_read_symbols
-  # end
 
-
-  # decimal place display
+  # more refutes
+  # decimal place/visible output
   # return currency with symbol
 
 end
