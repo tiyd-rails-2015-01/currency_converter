@@ -20,19 +20,19 @@ class Currency
       AUD: "A$",
       CAD: "C$",
       JPY: "¥"}
-    end
+  end
 
-    def read(string)
-      sign = string[0]
-      new_hash = symbols.invert
-      if sign == "A" || sign == "C"
-        @amount = string[2..-1].to_f
-        @code = new_hash[(string[0..1])]
-      else
-        @amount = string[1..-1].to_f
-        @code = new_hash[sign]
-      end
+  def read(string)
+    sign = string[0]
+    new_hash = symbols.invert
+    if sign == "A" || sign == "C"
+      @amount = string[2..-1].to_f
+      @code = new_hash[(string[0..1])]
+    else
+      @amount = string[1..-1].to_f
+      @code = new_hash[sign]
     end
+  end
 
   def ==(other_money)
     self.amount == other_money.amount && self.code == other_money.code

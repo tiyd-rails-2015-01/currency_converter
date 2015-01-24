@@ -2,7 +2,7 @@ require './different_currency_code_error'
 require './unknown_currency_code_error'
 require './currency'
 require './currency_converter'
-require 'pry'
+
 
 def change_real_money(mm)
   array = mm.symbols.invert.keys
