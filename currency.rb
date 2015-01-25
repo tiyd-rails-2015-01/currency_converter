@@ -9,5 +9,9 @@ class Currency
   def ==(other)
     amount == other.amount &&
       currency_code == other.currency_code
+  end  
+
+  def +(other)
+    Currency.new(amount + other.amount, currency_code)
   end
 end
