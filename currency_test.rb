@@ -13,7 +13,7 @@ class CurrencyTest < Minitest::Test
     assert currency.currency_code == :USD
   end
 
-  def test_should_equal_other_object_with_same_amount_and_currency_code
+  def test_equals_other_object_with_same_amount_and_currency_code
     currency = Currency.new(12, :USD)
     currency1 = Currency.new(12, :USD)
     assert currency.amount == currency1.amount
