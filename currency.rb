@@ -14,4 +14,8 @@ class Currency
   def +(other)
     Currency.new(amount + other.amount, currency_code)
   end
+  
+  def -(other)
+    Currency.new(amount - other.amount, currency_code)
+  end
 end
