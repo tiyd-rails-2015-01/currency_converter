@@ -34,7 +34,7 @@ class CurrencyTest < Minitest::Test
   def test_two_objects_with_same_currency_code_can_be_subtracted
     currency1 = Currency.new(15, :USD)
     currency2 = Currency.new(12, :USD)
-    currency_total1 = currency2 - currency1
+    currency_total1 = currency1 - currency2
     assert currency_total1.amount == 3
     assert currency_total1.currency_code == :USD
   end
