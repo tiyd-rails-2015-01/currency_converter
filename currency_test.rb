@@ -75,4 +75,9 @@ class CurrencyTest < Minitest::Test
     currencies = CurrencyConverter.new({USD: 1.0, EUR: 0.87})
     currencies.convert(currency1, :EUR) == Currency.new(13.05, :EUR)
   end
+
+  def test_initializes_with_hash_of_three_currency_codes_and_conversion_rates
+    currencies1 = ({USD: 1.0, EUR: 0.87, GBP: 0.67})
+    CurrencyConverter.new(currencies1)
+  end
 end
