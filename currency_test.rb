@@ -47,4 +47,10 @@ class CurrencyTest < Minitest::Test
       currency2 - currency3
     end
   end
+
+  def test_currency_can_be_multiplied_by_a_fixnum_or_float
+    currency2 = Currency.new(12, :USD)
+    assert currency2 * 10 == Currency.new(120, :USD)
+    assert currency2 * 2.5 == Currency.new(30, :USD)
+  end
 end
