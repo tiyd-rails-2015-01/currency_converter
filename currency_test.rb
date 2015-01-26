@@ -65,8 +65,14 @@ class CurrencyTest < Minitest::Test
   end
 
   def test_currency_objects_are_equal
-    currency = Currency.new(15, :USD)
-    currency_converter = CurrencyConverter.new({USD: 1.0, EUR: 0.87})
-    currency_converter.convert(currency, :USD) == Currency.new(15, :USD)
+    currency1 = Currency.new(15, :USD)
+    currencies = CurrencyConverter.new({USD: 1.0, EUR: 0.87})
+    currencies.convert(currency1, :USD) == Currency.new(15, :USD)
+  end
+
+  def test_convert_from_one_currency_to_another
+    currency1 = Currency.new(15, :USD)
+    currencies = CurrencyConverter.new({USD: 1.0, EUR: 0.87})
+    currencies.convert(currency1, :EUR) == Currency.new(13.05, :EUR)
   end
 end
