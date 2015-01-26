@@ -1,4 +1,4 @@
-class CurrencyConverter
+class CurrencyConverter <Currency
   attr_reader :conversion_rates
 
   def initialize(conversion_rates)
