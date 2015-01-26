@@ -58,4 +58,9 @@ class CurrencyTest < Minitest::Test
   def test_currency_converter_class_exists
     assert CurrencyConverter
   end
+
+  def test_initializes_with_hash_of_currency_codes_and_conversion_rates
+    currencies = {USD: 1.0, EUR: 0.87}
+    CurrencyConverter.new(currencies)
+  end
 end
