@@ -26,4 +26,9 @@ class Currency
       raise DifferentCurrencyCodeError.new("different currencies cannot be subtracted")
     end
   end
+
+  def *(number)
+    total = amount * number
+    Currency.new(total, currency_code)
+  end
 end
