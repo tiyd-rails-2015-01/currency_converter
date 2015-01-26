@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './currency'
+require './currency_converter'
 require './different_currency_code_error'
 
 class CurrencyTest < Minitest::Test
