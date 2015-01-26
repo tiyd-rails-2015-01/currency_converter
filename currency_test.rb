@@ -53,4 +53,8 @@ class CurrencyTest < Minitest::Test
     assert currency2 * 10 == Currency.new(120, :USD)
     assert currency2 * 2.5 == Currency.new(30, :USD)
   end
+
+  def test_currency_converter_class_exists
+    assert CurrencyConverter
+  end
 end
